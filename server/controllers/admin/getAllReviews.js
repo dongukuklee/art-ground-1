@@ -1,7 +1,6 @@
 const { each, last, map, sortBy, isEqual } = require("underscore");
 const {
   getSet,
-  getList,
   getHashValue,
   getHash,
 } = require("../../utils/redis/ctrl/getCache.ctrl");
@@ -46,9 +45,7 @@ module.exports = {
         }
       });
     } else {
-      res.status(401).json({
-        message: "invalid access token",
-      });
+      res.status(401).json({ message: "invalid access token" });
     }
   },
 };

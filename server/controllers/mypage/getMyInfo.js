@@ -6,13 +6,9 @@ module.exports = {
     const userInfo = isAuthorized(req);
 
     if (userInfo) {
-      res.status(200).json({
-        data: await getHash(`user:${userInfo.id}`),
-      });
+      res.status(200).json({ data: await getHash(`user:${userInfo.id}`) });
     } else {
-      res.status(401).json({
-        message: "invalid access token",
-      });
+      res.status(401).json({ message: "invalid access token" });
     }
   },
 };

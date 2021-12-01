@@ -38,8 +38,6 @@ module.exports.getMyExhibition = async (req, res) => {
     if (data) res.status(200).json({ data, message: "ok" });
     else res.status(204).json({ message: "Data Not Found" });
   } else {
-    res.status(401).json({
-      message: "invalid access token",
-    });
+    res.status(401).json({ message: "invalid access token" });
   }
 };

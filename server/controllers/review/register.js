@@ -8,7 +8,6 @@ const {
 const { each, keys } = require("underscore");
 module.exports.postReview = async (req, res) => {
   const userInfo = isAuthorized(req);
-
   const { postId: exhibition_id, comments } = req.body;
 
   if (userInfo) {
@@ -28,8 +27,6 @@ module.exports.postReview = async (req, res) => {
     });
     await commentsModel.create(newComment);
   } else {
-    res.status(401).json({
-      message: "invalid user",
-    });
+    res.status(401).json({ message: "invalid user" });
   }
 };

@@ -76,8 +76,6 @@ module.exports.register = async (req, res) => {
       res.status(422).json({ message: "insufficient parameters supplied" });
     }
   } else {
-    res.status(401).json({
-      message: "invalid user",
-    });
+    res.status(401).json({ message: "invalid user" });
   }
 };

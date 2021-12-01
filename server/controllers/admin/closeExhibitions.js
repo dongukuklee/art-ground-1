@@ -1,12 +1,9 @@
 const { exhibition } = require("../../models");
-
-const { getHash } = require("../../utils/redis/ctrl/getCache.ctrl");
 const {
   setHash,
   removeFromSet,
   addToSet,
 } = require("../../utils/redis/ctrl/setCache.ctrl");
-
 const { isAuthorized } = require("../../utils/tokenFunction");
 
 module.exports = {
@@ -21,23 +18,10 @@ module.exports = {
       await removeFromSet(exhibitionType, id);
       await addToSet("closedExhibition", id);
 
-      res.status(200).json({
-        message: "successfully close exhibitions",
-      });
-      await exhibition.update(
-        {
-          status: 2, // 전시 종료
-        },
-        {
-          where: {
-            id,
-          },
-        }
-      );
+      res.status(200).json({ message: "successfully close exhibitions" });
+      await exhibition.update({ status: 2 }, { where: { id } });
     } else {
-      res.status(401).json({
-        message: "invalid access token",
-      });
+      res.status(401).json({ message: "invalid access token" });
     }
   },
 };
